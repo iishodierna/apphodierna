@@ -22,6 +22,15 @@ class MyApp extends StatelessWidget {
                           "https://sites.google.com/iishodierna.edu.it/www-iishodierna-edu-it/")) {
                         return NavigationDecision.navigate;
                       } else {
+                        if (request.url.contains(
+                            "https://www.youtube.com/embed") ||
+                            request.url.contains(
+                                "https://maps-api-ssl.google.com/maps") ||
+                            request.url.contains(
+                                "https://drive.google.com/auth_warmup")
+                        ) {
+                          return NavigationDecision.prevent;
+                        }
                         _launchURL(request.url);
                         return NavigationDecision.prevent;
                       }
@@ -34,8 +43,8 @@ class MyApp extends StatelessWidget {
   }
 
   _launchURL(String url) async {
-    if (await canLaunchUrl(url as Uri)) {
-      await launchUrl(url as Uri);
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
     } else {
       throw 'Could not launch $url';
     }
