@@ -19,7 +19,7 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = '3'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
@@ -32,7 +32,6 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 33
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -40,7 +39,8 @@ android {
 
     defaultConfig {
         applicationId "it.edu.iishodierna"
-        minSdkVersion 21
+        minSdkVersion 22
+        targetSdkVersion 33
         compileSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
